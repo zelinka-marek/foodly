@@ -1,7 +1,7 @@
 import App from "./app.js";
 import "./style.css";
 import { FetchWrapper, calculateCalories, capitalize } from "./utils.js";
-// import "chart.js";
+import { renderChart } from "./chart.js";
 
 let client = new FetchWrapper(
   "https://firestore.googleapis.com/v1/projects/jsdemo-3f387/databases/(default)/documents/mzelinka17",
@@ -110,9 +110,13 @@ form.addEventListener("submit", async (event) => {
   }
 
   alert("Food added successfully.");
-
   displayEntry(name.value, carbs.value, protein.value, fat.value);
-  //   renderChart();
+
+  renderChart({
+    carbs: app.getTotalCarbs(),
+    protein: app.getTotalProtein(),
+    fat: app.getTotalFat(),
+  });
 
   name.value = "";
   carbs.value = "";
@@ -132,39 +136,12 @@ async function init() {
       fields.fat.integerValue,
     );
   });
-  //   renderChart();
+
+  renderChart({
+    carbs: app.getTotalCarbs(),
+    protein: app.getTotalProtein(),
+    fat: app.getTotalFat(),
+  });
 }
-
-// let chartInstance = null;
-// const renderChart = () => {
-//   chartInstance?.destroy();
-//   const context = document.querySelector("#app-chart").getContext("2d");
-
-//   chartInstance = new Chart(context, {
-//     type: "bar",
-//     data: {
-//       labels: ["Carbs", "Protein", "Fat"],
-//       datasets: [
-//         {
-//           label: "Macronutrients",
-//           data: [app.getTotalCarbs(), app.getTotalProtein(), app.getTotalFat()],
-//           backgroundColor: ["#25AEEE", "#FECD52", "#57D269"],
-//           borderWidth: 3, // example of other customization
-//         },
-//       ],
-//     },
-//     options: {
-//       scales: {
-//         yAxes: [
-//           {
-//             ticks: {
-//               beginAtZero: true,
-//             },
-//           },
-//         ],
-//       },
-//     },
-//   });
-// };
 
 init();
