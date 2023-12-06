@@ -35,6 +35,7 @@
                       <select
                         id="name"
                         name="name"
+                        required
                         class="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-amber-600 sm:text-sm/6"
                       >
                         <option value="">Please select</option>
@@ -62,6 +63,8 @@
                           name="carbs"
                           id="carbs"
                           placeholder="0"
+                          required
+                          min="1"
                           class="block w-full rounded-md border-0 py-1.5 pr-7 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm/6"
                           aria-describedby="carbs-unit"
                         />
@@ -92,6 +95,8 @@
                           name="protein"
                           id="protein"
                           placeholder="0"
+                          required
+                          min="1"
                           class="block w-full rounded-md border-0 py-1.5 pr-7 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm/6"
                           aria-describedby="protein-unit"
                         />
@@ -122,6 +127,8 @@
                           name="fat"
                           id="fat"
                           placeholder="0"
+                          required
+                          min="1"
                           class="block w-full rounded-md border-0 py-1.5 pr-7 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm/6"
                           aria-describedby="fat-unit"
                         />

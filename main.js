@@ -11,16 +11,9 @@ let app = new App();
 
 let list = document.querySelector("#food-list");
 let form = document.querySelector("#create-form");
-let name = document.querySelector("#name");
-let carbs = document.querySelector("#carbs");
-let protein = document.querySelector("#protein");
-let fat = document.querySelector("#fat");
-// let totalCalories = document.querySelector("#total-calories");
 
 function displayEntry(name, carbs, protein, fat) {
   app.addFood(carbs, protein, fat);
-
-  //   totalCalories.textContent = app.getTotalCalories();
 
   list.insertAdjacentHTML(
     "beforeend",
@@ -97,12 +90,18 @@ function displayEntry(name, carbs, protein, fat) {
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
+  let formData = new FormData(event.target);
+  let name = formData.get("name");
+  let carbs = formData.get("carbs");
+  let protein = formData.get("protein");
+  let fat = formData.get("fat");
+
   let data = await client.post("/", {
     fields: {
-      name: { stringValue: name.value },
-      carbs: { integerValue: carbs.value },
-      protein: { integerValue: protein.value },
-      fat: { integerValue: fat.value },
+      name: { stringValue: name },
+      carbs: { integerValue: carbs },
+      protein: { integerValue: protein },
+      fat: { integerValue: fat },
     },
   });
   if (data.error) {
@@ -110,7 +109,7 @@ form.addEventListener("submit", async (event) => {
   }
 
   alert("Food added successfully.");
-  displayEntry(name.value, carbs.value, protein.value, fat.value);
+  displayEntry(name, carbs, protein, fat);
 
   renderChart({
     carbs: app.getTotalCarbs(),
@@ -118,10 +117,7 @@ form.addEventListener("submit", async (event) => {
     fat: app.getTotalFat(),
   });
 
-  name.value = "";
-  carbs.value = "";
-  protein.value = "";
-  fat.value = "";
+  event.target.reset();
 });
 
 async function init() {
