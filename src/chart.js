@@ -5,7 +5,7 @@ let chartInstance = null;
 export function renderChart({ carbs, protein, fat }) {
   chartInstance?.destroy();
 
-  let canvas = document.querySelector("#chart");
+  const canvas = document.querySelector("#chart");
 
   chartInstance = new Chart(canvas, {
     type: "doughnut",

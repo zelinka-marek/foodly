@@ -12,7 +12,7 @@ export class FetchWrapper {
   }
 
   async get(endpoint) {
-    let response = await fetch(this.baseURL + endpoint);
+    const response = await fetch(this.baseURL + endpoint);
 
     return response.json();
   }
@@ -34,7 +34,7 @@ export class FetchWrapper {
   }
 
   async _send(method, endpoint, body) {
-    let response = await fetch(this.baseURL + endpoint, {
+    const response = await fetch(this.baseURL + endpoint, {
       method,
       headers: {
         "Content-Type": "application/json",

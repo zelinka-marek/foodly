@@ -1,16 +1,16 @@
 import App from "./app.js";
+import { renderChart } from "./chart.js";
 import "./style.css";
 import { FetchWrapper, calculateCalories, capitalize } from "./utils.js";
-import { renderChart } from "./chart.js";
 
-let client = new FetchWrapper(
+const client = new FetchWrapper(
   "https://firestore.googleapis.com/v1/projects/jsdemo-3f387/databases/(default)/documents/mzelinka17",
 );
 
-let app = new App();
+const app = new App();
 
-let list = document.querySelector("#food-list");
-let form = document.querySelector("#create-form");
+const list = document.querySelector("#food-list");
+const form = document.querySelector("#create-form");
 
 function displayEntry(name, carbs, protein, fat) {
   app.addFood(carbs, protein, fat);
@@ -90,13 +90,13 @@ function displayEntry(name, carbs, protein, fat) {
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  let formData = new FormData(event.target);
-  let name = formData.get("name");
-  let carbs = formData.get("carbs");
-  let protein = formData.get("protein");
-  let fat = formData.get("fat");
+  const formData = new FormData(event.target);
+  const name = formData.get("name");
+  const carbs = formData.get("carbs");
+  const protein = formData.get("protein");
+  const fat = formData.get("fat");
 
-  let data = await client.post("/", {
+  const data = await client.post("/", {
     fields: {
       name: { stringValue: name },
       carbs: { integerValue: carbs },
@@ -121,7 +121,7 @@ form.addEventListener("submit", async (event) => {
 });
 
 async function init() {
-  let data = await client.get("/?pageSize=100");
+  const data = await client.get("/?pageSize=100");
   data.documents?.forEach((doc) => {
     const fields = doc.fields;
 
