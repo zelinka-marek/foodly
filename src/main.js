@@ -15,75 +15,29 @@ const form = document.querySelector("#create-form");
 function displayEntry(name, carbs, protein, fat) {
   app.addFood(carbs, protein, fat);
 
+  const totalCalories = calculateCalories(carbs, protein, fat);
+
   list.insertAdjacentHTML(
     "beforeend",
-    `<li
-    class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
+    `<li class="snap-start px-4 py-5 sm:px-6">
+  <div class="flex justify-between">
+    <p class="text-sm/6 font-semibold text-gray-900">${capitalize(name)}</p>
+    <p class="text-sm/6 text-gray-900">${totalCalories} calories</p>
+  </div>
+  <div
+    class="mt-1 flex items-center gap-x-2 text-xs/5 text-gray-500"
   >
-    <div class="flex flex-1 flex-col p-6">
-      <h3 class="text-base/6 font-semibold text-gray-900">
-      ${capitalize(name)}
-      </h3>
-      <p class="mt-2 text-sm text-gray-500">${calculateCalories(
-        carbs,
-        protein,
-        fat,
-      )} calories</p>
-    </div>
-    <dl class="flex divide-x divide-gray-200">
-      <div
-        class="flex w-0 flex-1 flex-col items-center justify-center py-4"
-      >
-        <dd
-          class="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-500"
-        >
-          <svg
-            viewBox="0 0 6 6"
-            class="h-1.5 w-1.5 fill-blue-500"
-            aria-hidden="true"
-          >
-            <circle cx="3" cy="3" r="3" />
-          </svg>
-          Carbs
-        </dd>
-        <dt class="mt-1 text-sm text-gray-500">${carbs}g</dt>
-      </div>
-      <div
-        class="flex w-0 flex-1 flex-col items-center justify-center py-4"
-      >
-        <dd
-          class="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-500"
-        >
-          <svg
-            viewBox="0 0 6 6"
-            class="h-1.5 w-1.5 fill-yellow-500"
-            aria-hidden="true"
-          >
-            <circle cx="3" cy="3" r="3" />
-          </svg>
-          Protein
-        </dd>
-        <dt class="mt-1 text-sm text-gray-500">${protein}g</dt>
-      </div>
-      <div
-        class="flex w-0 flex-1 flex-col items-center justify-center py-4"
-      >
-        <dd
-          class="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-500"
-        >
-          <svg
-            viewBox="0 0 6 6"
-            class="h-1.5 w-1.5 fill-green-500"
-            aria-hidden="true"
-          >
-            <circle cx="3" cy="3" r="3" />
-          </svg>
-          Fat
-        </dd>
-        <dt class="mt-1 text-sm text-gray-500">${fat}g</dt>
-      </div>
-    </dl>
-  </li>`,
+    <p class="whitespace-nowrap">${carbs}g carbs</p>
+    <svg viewBox="0 0 2 2" class="size-0.5 fill-current">
+      <circle cx="1" cy="1" r="1" />
+    </svg>
+    <p class="whitespace-nowrap">${protein}g protein</p>
+    <svg viewBox="0 0 2 2" class="size-0.5 fill-current">
+      <circle cx="1" cy="1" r="1" />
+    </svg>
+    <p class="whitespace-nowrap">${fat}g fat</p>
+  </div>
+</li>`,
   );
 }
 

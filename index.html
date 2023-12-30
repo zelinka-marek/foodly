@@ -9,8 +9,8 @@
   </head>
   <body class="h-full antialiased">
     <div class="min-h-full bg-gray-100">
-      <nav class="border-t-8 border-amber-400 bg-white shadow-sm">
-        <div class="mx-auto max-w-xl px-4 sm:px-6">
+      <nav class="bg-white shadow-sm">
+        <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div class="flex h-16 items-center">
             <h1
               class="flex items-center gap-2 text-base/7 font-semibold text-gray-900"
@@ -30,21 +30,24 @@
         </div>
       </nav>
       <main class="py-10">
-        <div class="mx-auto max-w-xl px-4 sm:px-6">
-          <div class="space-y-8">
-            <section class="space-y-2">
+        <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-2">
+            <section class="space-y-2 md:col-span-full">
               <h2 class="text-base/6 font-semibold text-gray-900">Add food</h2>
               <div
-                class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6"
+                class="overflow-hidden rounded-xl bg-white px-4 py-5 shadow-sm ring-1 ring-gray-900/5 sm:p-6"
               >
-                <form id="create-form" class="space-y-6">
-                  <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4">
+                <form
+                  id="create-form"
+                  class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6"
+                >
+                  <div class="sm:col-span-full">
                     <label
                       for="name"
-                      class="block text-sm/6 font-medium text-gray-900 sm:pt-1.5"
+                      class="block text-sm/6 font-medium text-gray-900"
                       >Food name</label
                     >
-                    <div class="max-sm:mt-2 sm:col-span-2">
+                    <div class="mt-2">
                       <select
                         id="name"
                         name="name"
@@ -63,14 +66,14 @@
                       </select>
                     </div>
                   </div>
-                  <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4">
+                  <div class="sm:col-span-2">
                     <label
                       for="carbs"
-                      class="block text-sm/6 font-medium text-gray-900 sm:pt-1.5"
+                      class="block text-sm/6 font-medium text-gray-900"
                       >Carbs</label
                     >
-                    <div class="max-sm:mt-2 sm:col-span-2">
-                      <div class="relative sm:max-w-[100px]">
+                    <div class="mt-2">
+                      <div class="relative">
                         <input
                           type="number"
                           name="carbs"
@@ -95,14 +98,14 @@
                       </div>
                     </div>
                   </div>
-                  <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4">
+                  <div class="sm:col-span-2">
                     <label
                       for="protein"
-                      class="block text-sm/6 font-medium text-gray-900 sm:pt-1.5"
+                      class="block text-sm/6 font-medium text-gray-900"
                       >Protein</label
                     >
-                    <div class="max-sm:mt-2 sm:col-span-2">
-                      <div class="relative sm:max-w-[100px]">
+                    <div class="mt-2">
+                      <div class="relative">
                         <input
                           type="number"
                           name="protein"
@@ -127,14 +130,14 @@
                       </div>
                     </div>
                   </div>
-                  <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4">
+                  <div class="sm:col-span-2">
                     <label
                       for="fat"
-                      class="block text-sm/6 font-medium text-gray-900 sm:pt-1.5"
+                      class="block text-sm/6 font-medium text-gray-900"
                       >Fat</label
                     >
-                    <div class="max-sm:mt-2 sm:col-span-2">
-                      <div class="relative sm:max-w-[100px]">
+                    <div class="mt-2">
+                      <div class="relative">
                         <input
                           type="number"
                           name="fat"
@@ -159,13 +162,13 @@
                       </div>
                     </div>
                   </div>
-                  <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4">
+                  <div class="flex justify-end sm:col-span-full">
                     <div class="max-sm:flex max-sm:flex-col sm:col-start-2">
                       <button
                         type="submit"
                         class="rounded-md bg-amber-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-600"
                       >
-                        Save item
+                        Add item
                       </button>
                     </div>
                   </div>
@@ -175,17 +178,17 @@
             <section class="space-y-2">
               <h2 class="text-base/6 font-semibold text-gray-900">Overview</h2>
               <div
-                class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6"
+                class="flex h-96 items-center justify-center overflow-hidden rounded-xl bg-white px-4 py-5 shadow-sm ring-1 ring-gray-900/5 sm:p-6"
               >
-                <canvas id="chart" class="h-96"></canvas>
+                <canvas id="chart" width="100" height="100"></canvas>
               </div>
             </section>
             <section class="space-y-2">
               <h2 class="text-base/6 font-semibold text-gray-900">History</h2>
               <ul
-                role="list"
                 id="food-list"
-                class="grid grid-cols-1 gap-6 sm:grid-cols-2"
+                role="list"
+                class="h-96 snap-y snap-mandatory divide-y divide-gray-100 overflow-y-auto rounded-xl bg-white shadow-sm ring-1 ring-gray-900/5"
               ></ul>
             </section>
           </div>
