@@ -1,7 +1,12 @@
 import App from "./app.js";
 import { renderChart } from "./chart.js";
 import "./style.css";
-import { FetchWrapper, calculateCalories, capitalize } from "./utils.js";
+import {
+  FetchWrapper,
+  calculateCalories,
+  capitalize,
+  formatDecimal,
+} from "./utils.js";
 
 const client = new FetchWrapper(
   "https://firestore.googleapis.com/v1/projects/jsdemo-3f387/databases/(default)/documents/mzelinka17",
@@ -22,20 +27,22 @@ function displayEntry(name, carbs, protein, fat) {
     `<li class="snap-start px-4 py-5 sm:px-6">
   <div class="flex justify-between">
     <p class="text-sm/6 font-semibold text-gray-900">${capitalize(name)}</p>
-    <p class="text-sm/6 text-gray-900">${totalCalories} calories</p>
+    <p class="text-sm/6 text-gray-900">${formatDecimal(
+      totalCalories,
+    )} calories</p>
   </div>
   <div
     class="mt-1 flex items-center gap-x-2 text-xs/5 text-gray-500"
   >
-    <p class="whitespace-nowrap">${carbs}g carbs</p>
+    <p class="whitespace-nowrap">${formatDecimal(carbs)}g carbs</p>
     <svg viewBox="0 0 2 2" class="size-0.5 fill-current">
       <circle cx="1" cy="1" r="1" />
     </svg>
-    <p class="whitespace-nowrap">${protein}g protein</p>
+    <p class="whitespace-nowrap">${formatDecimal(protein)}g protein</p>
     <svg viewBox="0 0 2 2" class="size-0.5 fill-current">
       <circle cx="1" cy="1" r="1" />
     </svg>
-    <p class="whitespace-nowrap">${fat}g fat</p>
+    <p class="whitespace-nowrap">${formatDecimal(fat)}g fat</p>
   </div>
 </li>`,
   );
